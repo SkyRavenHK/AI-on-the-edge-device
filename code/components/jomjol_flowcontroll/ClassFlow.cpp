@@ -92,23 +92,16 @@ bool ClassFlow::getNextLine(FILE* pfile, string *rt)
 		*rt = "";
 		return false;
 	}
-	if (!fgets(zw, 1024, pfile))
-	{
-		*rt = "";
-		ESP_LOGD(TAG, "END OF FILE");
-		return false;
-	}
-	ESP_LOGD(TAG, "%s", zw);
-	*rt = zw;
-	*rt = trim(*rt);
-	while ((zw[0] == ';' || zw[0] == '#' || (rt->size() == 0)) && !(zw[1] == '['))
-	{
-		*rt = "";
+	do {
 		if (!fgets(zw, 1024, pfile))
+		{
+			*rt = "";
+			ESP_LOGD(TAG, "END OF FILE");
 			return false;
+		}
 		ESP_LOGD(TAG, "%s", zw);
 		*rt = zw;
 		*rt = trim(*rt);
-	}
+	} while ((zw[0] == ';' || zw[0] == '#' || (rt->size() == 0)) && !(zw[1] == '['));
 	return true;
 }
