@@ -1075,27 +1075,22 @@ string ClassFlowPostProcessing::ErsetzteN(string input, double _prevalue) {
     int pot, ziffer;
     float zw;
 
-    posN = findDelimiterPos(input, "N");
     posPunkt = findDelimiterPos(input, ".");
 	
     if (posPunkt == std::string::npos) {
         posPunkt = input.length();
     }
 
-    while (posN != std::string::npos) {
-        if (posN < posPunkt) {
-            pot = posPunkt - posN - 1;
-        }
-        else {
-            pot = posPunkt - posN;
-        }
+    do {
+        posN = findDelimiterPos(input, "N");
+        if (posN == std::string::npos) break;
 
-        zw =_prevalue / pow(10, pot);
+        pot = posPunkt - posN - (posN < posPunkt? 1: 0);
+
+        zw = _prevalue / pow(10, pot);
         ziffer = ((int) zw) % 10;
         input[posN] = ziffer + 48;
-
-        posN = findDelimiterPos(input, "N");
-    }
+    } while (1);
 
     return input;
 }
