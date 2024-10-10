@@ -722,18 +722,16 @@ static esp_err_t upload_post_handler(httpd_req_t *req)
     ESP_LOGI(TAG, "File reception completed");
 
     std::string directory = std::string(filepath);
-	size_t zw = directory.find("/");
-	size_t found = zw;
-	while (zw != std::string::npos)
-	{
-		zw = directory.find("/", found+1);  
-		if (zw != std::string::npos)
-			found = zw;
-	}
+    size_t zw,found = 0;
+    do {
+        zw = directory.find("/", found);  
+        if (zw == std::string::npos) break;
+        found = zw+1;
+    } while (1);
 
     int start_fn = strlen(((struct file_server_data *)req->user_ctx)->base_path);
-    ESP_LOGD(TAG, "Directory: %s, start_fn: %d, found: %d", directory.c_str(), start_fn, found);
-	directory = directory.substr(start_fn, found - start_fn + 1);
+    ESP_LOGD(TAG, "Directory: %s, start_fn: %d, found: %d", directory.c_str(), start_fn, found-1);
+    directory = directory.substr(start_fn, found - start_fn);
     directory = "/fileserver" + directory;
 //    ESP_LOGD(TAG, "Directory danach 2: %s", directory.c_str());
 
