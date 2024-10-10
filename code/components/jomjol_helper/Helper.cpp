@@ -716,19 +716,18 @@ std::vector<string> ZerlegeZeile(std::string input, std::string delimiter)
 	else
 	{
 		// Legacy Mode
-		input = trim(input, delimiter); // sonst werden delimiter am Ende (z.B. == im Token) gelöscht)
-		size_t pos = findDelimiterPos(input, delimiter);
+		size_t pos;
 		std::string token;
+		do {
+			input = trim(input, delimiter); // sonst werden delimiter am Ende (z.B. == im Token) gelöscht)
+			pos = findDelimiterPos(input, delimiter);
 
-		while (pos != std::string::npos)
-		{
+			if (pos == std::string::npos) break;
 			token = input.substr(0, pos);
 			token = trim(token, delimiter);
 			Output.push_back(token);
 			input.erase(0, pos + 1);
-			input = trim(input, delimiter);
-			pos = findDelimiterPos(input, delimiter);
-		}
+		} while (1);
 
 		Output.push_back(input);
 	}
