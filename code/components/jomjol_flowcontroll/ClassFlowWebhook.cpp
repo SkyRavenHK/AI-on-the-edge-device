@@ -24,7 +24,7 @@ void ClassFlowWebhook::SetInitialParameter(void)
     flowpostprocessing = NULL;
     flowAlignment = NULL;
     previousElement = NULL;
-    ListFlowControll = NULL; 
+    ListFlowControl = NULL; 
     disabled = false;
     WebhookEnable = false;
     WebhookUploadImg = 0;
@@ -39,16 +39,16 @@ ClassFlowWebhook::ClassFlowWebhook(std::vector<ClassFlow*>* lfc)
 {
     SetInitialParameter();
 
-    ListFlowControll = lfc;
-    for (int i = 0; i < ListFlowControll->size(); ++i)
+    ListFlowControl = lfc;
+    for (int i = 0; i < ListFlowControl->size(); ++i)
     {
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowPostProcessing") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowPostProcessing") == 0)
         {
-            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControll)[i];
+            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControl)[i];
         }
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowAlignment") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowAlignment") == 0)
         {
-            flowAlignment = (ClassFlowAlignment*) (*ListFlowControll)[i];
+            flowAlignment = (ClassFlowAlignment*) (*ListFlowControl)[i];
         }
 
     }
@@ -59,17 +59,17 @@ ClassFlowWebhook::ClassFlowWebhook(std::vector<ClassFlow*>* lfc, ClassFlow *_pre
     SetInitialParameter();
 
     previousElement = _prev;
-    ListFlowControll = lfc;
+    ListFlowControl = lfc;
 
-    for (int i = 0; i < ListFlowControll->size(); ++i)
+    for (int i = 0; i < ListFlowControl->size(); ++i)
     {
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowPostProcessing") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowPostProcessing") == 0)
         {
-            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControll)[i];
+            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControl)[i];
         }
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowAlignment") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowAlignment") == 0)
         {
-            flowAlignment = (ClassFlowAlignment*) (*ListFlowControll)[i];
+            flowAlignment = (ClassFlowAlignment*) (*ListFlowControl)[i];
         }
     }
 }

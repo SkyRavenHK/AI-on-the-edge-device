@@ -11,7 +11,7 @@
 #include "time_sntp.h"
 #include "interface_mqtt.h"
 #include "ClassFlowPostProcessing.h"
-#include "ClassFlowControll.h"
+#include "ClassFlowControl.h"
 
 #include "server_mqtt.h"
 
@@ -49,7 +49,7 @@ void ClassFlowMQTT::SetInitialParameter(void)
     password = ""; 
     SetRetainFlag = false;
     previousElement = NULL;
-    ListFlowControll = NULL; 
+    ListFlowControl = NULL; 
     disabled = false;
     keepAlive = 25*60;
     domoticzintopic = "";
@@ -64,12 +64,12 @@ ClassFlowMQTT::ClassFlowMQTT(std::vector<ClassFlow*>* lfc)
 {
     SetInitialParameter();
 
-    ListFlowControll = lfc;
-    for (int i = 0; i < ListFlowControll->size(); ++i)
+    ListFlowControl = lfc;
+    for (int i = 0; i < ListFlowControl->size(); ++i)
     {
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowPostProcessing") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowPostProcessing") == 0)
         {
-            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControll)[i];
+            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControl)[i];
         }
     }
 }
@@ -79,13 +79,13 @@ ClassFlowMQTT::ClassFlowMQTT(std::vector<ClassFlow*>* lfc, ClassFlow *_prev)
     SetInitialParameter();
 
     previousElement = _prev;
-    ListFlowControll = lfc;
+    ListFlowControl = lfc;
 
-    for (int i = 0; i < ListFlowControll->size(); ++i)
+    for (int i = 0; i < ListFlowControl->size(); ++i)
     {
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowPostProcessing") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowPostProcessing") == 0)
         {
-            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControll)[i];
+            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControl)[i];
         }
     }
 }
@@ -205,8 +205,8 @@ bool ClassFlowMQTT::ReadParameter(FILE* pfile, string& aktparamgraph)
 
     /* Note:
      * Originally, we started the MQTT client here.
-     * How ever we need the interval parameter from the ClassFlowControll, but that only gets started later.
-     * To work around this, we delay the start and trigger it from ClassFlowControll::ReadParameter() */
+     * How ever we need the interval parameter from the ClassFlowControl, but that only gets started later.
+     * To work around this, we delay the start and trigger it from ClassFlowControl::ReadParameter() */
 
     mqttServer_setMainTopic(maintopic);
     mqttServer_setDmoticzInTopic(domoticzintopic);
@@ -326,9 +326,9 @@ bool ClassFlowMQTT::doFlow(string zwtime)
     /* Disabled because this is no longer a use case */
     // else
     // {
-    //     for (int i = 0; i < ListFlowControll->size(); ++i)
+    //     for (int i = 0; i < ListFlowControl->size(); ++i)
     //     {
-    //         zw = (*ListFlowControll)[i]->getReadout();
+    //         zw = (*ListFlowControl)[i]->getReadout();
     //         if (zw.length() > 0)
     //         {
     //             if (result.length() == 0)

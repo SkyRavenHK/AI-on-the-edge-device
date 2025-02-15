@@ -34,7 +34,7 @@ https://docs.espressif.com/projects/esp-idf/en/latest/esp32/migration-guides/rel
 #ifdef ENABLE_MQTT
     #include "interface_mqtt.h"
 #endif //ENABLE_MQTT
-#include "ClassControllCamera.h"
+#include "ClassControlCamera.h"
 #include "connect_wlan.h"
 
 

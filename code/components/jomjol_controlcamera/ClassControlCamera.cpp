@@ -1,4 +1,4 @@
-#include "ClassControllCamera.h"
+#include "ClassControlCamera.h"
 #include "ClassLogFile.h"
 
 #include <stdio.h>

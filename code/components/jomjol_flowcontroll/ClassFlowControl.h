@@ -22,11 +22,11 @@
 #endif //ENABLE_WEBHOOK
 #include "ClassFlowCNNGeneral.h"
 
-class ClassFlowControll :
+class ClassFlowControl :
     public ClassFlow
 {
 protected:
-	std::vector<ClassFlow*> FlowControll;
+	std::vector<ClassFlow*> FlowControl;
 	ClassFlowPostProcessing* flowpostprocessing;
 	ClassFlowAlignment* flowalignment;	
 	ClassFlowCNNGeneral* flowanalog;
@@ -89,7 +89,7 @@ public:
 
 	int CleanTempFolder();
 
-	string name(){return "ClassFlowControll";};
+	string name(){return "ClassFlowControl";};
 };
 
 #endif

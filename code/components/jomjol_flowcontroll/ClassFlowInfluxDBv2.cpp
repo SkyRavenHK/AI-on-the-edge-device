@@ -28,7 +28,7 @@ void ClassFlowInfluxDBv2::SetInitialParameter(void)
     OldValue = "";
     flowpostprocessing = NULL;  
     previousElement = NULL;
-    ListFlowControll = NULL; 
+    ListFlowControl = NULL; 
     disabled = false;
     InfluxDBenable = false;
 }       
@@ -42,12 +42,12 @@ ClassFlowInfluxDBv2::ClassFlowInfluxDBv2(std::vector<ClassFlow*>* lfc)
 {
     SetInitialParameter();
 
-    ListFlowControll = lfc;
-    for (int i = 0; i < ListFlowControll->size(); ++i)
+    ListFlowControl = lfc;
+    for (int i = 0; i < ListFlowControl->size(); ++i)
     {
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowPostProcessing") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowPostProcessing") == 0)
         {
-            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControll)[i];
+            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControl)[i];
         }
     }
 }
@@ -57,13 +57,13 @@ ClassFlowInfluxDBv2::ClassFlowInfluxDBv2(std::vector<ClassFlow*>* lfc, ClassFlow
     SetInitialParameter();
 
     previousElement = _prev;
-    ListFlowControll = lfc;
+    ListFlowControl = lfc;
 
-    for (int i = 0; i < ListFlowControll->size(); ++i)
+    for (int i = 0; i < ListFlowControl->size(); ++i)
     {
-        if (((*ListFlowControll)[i])->name().compare("ClassFlowPostProcessing") == 0)
+        if (((*ListFlowControl)[i])->name().compare("ClassFlowPostProcessing") == 0)
         {
-            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControll)[i];
+            flowpostprocessing = (ClassFlowPostProcessing*) (*ListFlowControl)[i];
         }
     }
 }
