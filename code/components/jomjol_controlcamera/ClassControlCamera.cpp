@@ -49,7 +49,7 @@
 #endif
 
 CCamera Camera;
-camera_controll_config_temp_t CCstatus;
+camera_control_config_temp_t CCstatus;
 
 static const char *TAG = "CAM";
 

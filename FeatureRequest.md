@@ -282,7 +282,7 @@ To do:
 
 ____
 
-#### #2 MQTT-controll with callback 
+#### #2 MQTT-control with callback 
 * https://github.com/jomjol/AI-on-the-edge-device/issues/105
 
 Extend the MQTT client to also enable callbacks for configuration setting

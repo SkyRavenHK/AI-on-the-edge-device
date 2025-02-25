@@ -914,7 +914,7 @@ External Illumination
 
 -   Upgrade digit CNN to v8.7.0  (added new images)
 
--   Bug fix: MQTT, WLAN, LED-Controll, GPIO usage, fixed IP, calculation flow rate
+-   Bug fix: MQTT, WLAN, LED-Control, GPIO usage, fixed IP, calculation flow rate
 
 ## [7.0.1] MQTT-Update - (2021-05-13)
 
